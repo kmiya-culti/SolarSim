@@ -40,8 +40,8 @@ https://science.nasa.gov/science-org-term/image-or-texture/
 本プロジェクトの3Dグラフィックスパイプラインの構築、および複雑な座標系のデバッグにおいて、AIアシスタント（Google Gemini）を共同開発パートナーとして活用しました。
 Special thanks to Google Gemini, which acted as a co-pilot in debugging complex 3D coordinate spaces and optimizing the Direct3D 11 rendering pipeline.*
 
-<img width="493" height="396" alt="スクリーンショット 2026-06-06 100232" src="https://github.com/user-attachments/assets/b05985da-74d9-402a-aa44-7df945f70fbf" />
-<img width="493" height="396" alt="スクリーンショット 2026-06-06 100122" src="https://github.com/user-attachments/assets/0a95f5b3-338d-4f3a-aa00-c49ee020e5b7" />
+<img width="328" height="264" alt="スクリーンショット 2026-06-06 100232" src="https://github.com/user-attachments/assets/b05985da-74d9-402a-aa44-7df945f70fbf" />
+<img width="328" height="264" alt="スクリーンショット 2026-06-06 100122" src="https://github.com/user-attachments/assets/0a95f5b3-338d-4f3a-aa00-c49ee020e5b7" />
 
 
 #### プログラムソースコードの詳細な説明
@@ -124,7 +124,8 @@ https://github.com/kmiya-culti/SolarSim/blob/b93179ab81baad9d66133568bf79bfd0f74
 これをreturn input.Posのようにして色の変わりに座標を返すようにして表示される球体の画像を送り返す方法でした。
 右上が赤いからX軸は、正しいが下方が緑なのがおかしいなどの判断を行ってデバッグしました。画像でデバックできるのがすごいですね。
 これも賢いデバッグ方法でhlslのデバッグが、非常に困難なのでこのような工夫が必要なのでしょう・・・
-<img width="493" height="396" alt="image" src="https://github.com/user-attachments/assets/c3640708-81fe-488c-8854-bac8504e5b30" />
+
+<img width="328" height="264" alt="image" src="https://github.com/user-attachments/assets/c3640708-81fe-488c-8854-bac8504e5b30" />
 
 次に日食や月食などの衛星や惑星の影を表現したいとGeminiにお願いしました。
 まずは、概略でシャドウマップを作成してカメラから見た視線を太陽から見た視線に置き換えたテクスチャを作成しなさいとのことで
