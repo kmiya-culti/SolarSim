@@ -182,8 +182,9 @@ https://github.com/kmiya-culti/SolarSim/blob/d327d7122e34a872b82cee5b97603e667be
 
 これも設定項目が多すぎですよね・・・・
 https://github.com/kmiya-culti/SolarSim/blob/d327d7122e34a872b82cee5b97603e667befc7d7/SolarSim/SolarSim.cpp#L321-L350
-Formatの指定をテクスチャがDXGI_FORMAT_R8G8B8A8_UNORMでリソースビューをDXGI_FORMAT_B8G8R8A8_UNORMで間違っていました。
+Formatの指定をテクスチャがDXGI_FORMAT_R8G8B8A8_UNORMでビットマップをDXGI_FORMAT_B8G8R8A8_UNORMで間違っていました。
 これなんかもぱっと見では、解りませんでした・・・せめて表示して色がおかしいなどの症状だとうれしいのですが全く動作が止まってしまいます。
+ソースコード内のコメントは、Geminiが作成した物で(サイズは 256x64 程度で十分です)などは、当初1024*256で指定していました。
 
 人による簡単なコピペで起こすようなミスや異常な表示、エラーコードを吐いて処理を中断などのデバッグは、GeminiなどのAIにとっては、
 「はいはい・・それは、これですね！」程度で指摘してもらえます。また、論理的なミスなどは、問題の原因を見つけるとその本質をとても詳しく
