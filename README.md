@@ -160,3 +160,9 @@ https://github.com/kmiya-culti/SolarSim/blob/0e27d627cc5e9e18a07204d14be486cefe4
 でZ軸で上下に配置しているのですが
 https://github.com/kmiya-culti/SolarSim/blob/0e27d627cc5e9e18a07204d14be486cefe495b62/SolarSim/SolarSim.cpp#L580-L581
 のようにテクスチャを-Zを頂点に強制しています。最後までGeminiには、-Zを頂点にモデリングしたコードがうまく作成できないようでした
+
+この時に行ったデバッグでGeminiが提案した方法で面白いのは、ピクセルシューダーで本来なら色を返すのですが、
+https://github.com/kmiya-culti/SolarSim/blob/b93179ab81baad9d66133568bf79bfd0f74c6be0/SolarSim/planet.hlsl#L41-L44
+これをreturn input.Posのようにして色の変わりに座標を返すようにして表示される球体の画像を送り返す方法でした。
+右上が赤いからX軸は、正しいが下方が緑なのがおかしいなどの判断を行ってデバッグしました。画像でデバックできるのがすごいですね。
+これも賢いデバッグ方法でhlslのデバッグが、非常に困難なのでこのような工夫が必要なのでしょう・・・
