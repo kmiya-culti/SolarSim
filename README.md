@@ -2,6 +2,9 @@
 特にWindowsのDirectXの2D/3Dによる描画には、サンプルとしての有用性があると思います。
 GDI+やDirect2Dで描画する部分もコンパイルオプションとして残しています。
 
+<img width="328" height="264" alt="スクリーンショット 2026-06-06 100232" src="https://github.com/user-attachments/assets/b05985da-74d9-402a-aa44-7df945f70fbf" />
+<img width="328" height="264" alt="スクリーンショット 2026-06-06 100122" src="https://github.com/user-attachments/assets/0a95f5b3-338d-4f3a-aa00-c49ee020e5b7" />
+
 このプログラムのライセンスは、MITライセンスで公開します。
 その他のライブラリなどは、それぞれのライセンスに依存します。
 
@@ -39,10 +42,6 @@ https://science.nasa.gov/science-org-term/image-or-texture/
 謝辞 / Acknowledgments
 本プロジェクトの3Dグラフィックスパイプラインの構築、および複雑な座標系のデバッグにおいて、AIアシスタント（Google Gemini）を共同開発パートナーとして活用しました。
 Special thanks to Google Gemini, which acted as a co-pilot in debugging complex 3D coordinate spaces and optimizing the Direct3D 11 rendering pipeline.*
-
-<img width="328" height="264" alt="スクリーンショット 2026-06-06 100232" src="https://github.com/user-attachments/assets/b05985da-74d9-402a-aa44-7df945f70fbf" />
-<img width="328" height="264" alt="スクリーンショット 2026-06-06 100122" src="https://github.com/user-attachments/assets/0a95f5b3-338d-4f3a-aa00-c49ee020e5b7" />
-
 
 #### プログラムソースコードの詳細な説明
 
@@ -171,4 +170,24 @@ https://github.com/kmiya-culti/SolarSim/blob/0b78a21535468cd93bf7a2dc50fb0e65f9a
 どちらも自力で作成して問題をGeminiにデバッグしてもらって修正で比較的簡単に実装できました。
 これは、癖になりそうなくらい自力デバッグの労力が少なくなる経験でした。イージーな設定ミスやパラメータ間違いなど楽勝で見つけてくれます。
 
-以上が大体のプログラムソースコードの履歴です。
+土星の環のピクセルシューダーでの1Dテクスチャの貼り付け
+https://github.com/kmiya-culti/SolarSim/blob/d327d7122e34a872b82cee5b97603e667befc7d7/SolarSim/planet.hlsl#L309-L310
+惑星名の表示のピクセルシューダーでの2Dテクスチャの貼り付け
+https://github.com/kmiya-culti/SolarSim/blob/d327d7122e34a872b82cee5b97603e667befc7d7/SolarSim/planet.hlsl#L375-L376
+最初は、単純に土星の環のピクセルシューダーをコピペしたのですが、気が付きませんがGeminiに指摘されれば、イージーなミスだと思いました。
+
+この様なDirect3Dでの細かな設定も表示の異常を引き起こしますが、なかなか気づけません。
+https://github.com/kmiya-culti/SolarSim/blob/d327d7122e34a872b82cee5b97603e667befc7d7/SolarSim/SolarSim.cpp#L1125-L1150
+惑星名の文字列をDirectWriteで書き出しますが、アンチエイリアスとテクスチャの拡大・縮小で相当表示が崩れます。
+
+これも設定項目が多すぎですよね・・・・
+https://github.com/kmiya-culti/SolarSim/blob/d327d7122e34a872b82cee5b97603e667befc7d7/SolarSim/SolarSim.cpp#L321-L350
+Formatの指定をテクスチャがDXGI_FORMAT_R8G8B8A8_UNORMでリソースビューをDXGI_FORMAT_B8G8R8A8_UNORMで間違っていました。
+これなんかもぱっと見では、解りませんでした・・・せめて表示して色がおかしいなどの症状だとうれしいのですが全く動作が止まってしまいます。
+
+人による簡単なコピペで起こすようなミスや異常な表示、エラーコードを吐いて処理を中断などのデバッグは、GeminiなどのAIにとっては、
+「はいはい・・それは、これですね！」程度で指摘してもらえます。また、論理的なミスなどは、問題の原因を見つけるとその本質をとても詳しく
+分析して報告してもらえたので自身の理解を高める事が出来ました。この点は、非常に素晴らしい経験でAIによる自身の学習が効果的ですね。
+
+昨今のAIによるプログラム支援の有効性は、一発で欲しい機能のプログラムを作成してもらうのでは、無く、欲しい機能の作成の理解を助けて
+もらえると考えると非常に有効だと思いました。
