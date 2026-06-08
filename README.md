@@ -111,7 +111,7 @@ https://github.com/kmiya-culti/SolarSim/blob/585e7ac5642bd674f0f9d44ff9466a1fb5e
 この実装前に厄介なデータ構造の変更を提案されました。
 「CUDA（GPU）の性能を引き出すためには「要素ごとの配列（SoA: Structure of Arrays）」への構造変更が非常に重要です」
 だそうで現在位置のデータ、現在の速度のベクトルデータなどを構造体で一括管理していたのをすべて配列に置き直しました
-https://github.com/kmiya-culti/SolarSim/blob/585e7ac5642bd674f0f9d44ff9466a1fb5e4e9bf/SolarSim/SolarSim.cpp#L88-L91
+https://github.com/kmiya-culti/SolarSim/blob/7e4ccfc73b91057b1db6b6cdd03b35208fc7ed31/SolarSim/SolarSim.cpp#L36-L39
 この作業は、ソースコードの見た目が一昔前のようになり困惑しましたが、後の実装で必要性を実感しました
 https://github.com/kmiya-culti/SolarSim/blob/585e7ac5642bd674f0f9d44ff9466a1fb5e4e9bf/SolarSim/SolarSim.cpp#L1701-L1722
 軌道計算に必要なデータは、沢山ありますが・・・
