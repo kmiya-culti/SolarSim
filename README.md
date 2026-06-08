@@ -43,7 +43,7 @@ Special thanks to Google Gemini, which acted as a co-pilot in debugging complex 
 <img width="986" height="793" alt="スクリーンショット 2026-06-06 100232" src="https://github.com/user-attachments/assets/b05985da-74d9-402a-aa44-7df945f70fbf" />
 <img width="986" height="793" alt="スクリーンショット 2026-06-06 100122" src="https://github.com/user-attachments/assets/0a95f5b3-338d-4f3a-aa00-c49ee020e5b7" />
 
-このプログラム作成の経緯
+#### このプログラム作成の経緯
 
 まず、AIでどの程度のことが出来るのか自身の3Dプログラムの勉強を兼ねてGeminiに・・・
 「太陽系の光星と惑星間の重力をエミュレートして画像で表示するプログラムを作成できますか？」
@@ -85,3 +85,38 @@ Geminiと行いデバッグ指示・結果報告などを繰り返し問題の�
 
 昨今のAIによるプログラム支援の有効性は、一発で欲しい機能のプログラムを作成してもらうのでは
 無く、欲しい機能の作成の理解を助けてもらえると考えると非常に有効だと思いました。
+
+#### プログラムソースコードの詳細な説明
+
+まず、SoloarSim.hのコンパイル時のオプション設定です
+https://github.com/kmiya-culti/SolarSim/blob/585e7ac5642bd674f0f9d44ff9466a1fb5e4e9bf/SolarSim/SolarSim.h#L24-L44
+出来るだけ追加していった機能をコンパイルオプションで残しています。
+
+最初が描画を行うGUIの選択です。GDI+、Direct2D、Direct3Dで描画速度が劇的に速くなっていきます。
+実際に違いが現れるのは、ASTEROID_BELTやTROJAN_ASTEROIDS、SATURN_RINGSなどで小惑星を表示した場合で
+数千から数十万の小惑星の描画には、DirectXの力を借りないと従来のGDIでは、非常に苦しいです。
+https://github.com/kmiya-culti/SolarSim/blob/585e7ac5642bd674f0f9d44ff9466a1fb5e4e9bf/SolarSim/SolarSim.cpp#L2959-L2961
+
+次にMULTI_THREADで軌道計算などをメインCPUのマルチスレッド化します
+https://github.com/kmiya-culti/SolarSim/blob/585e7ac5642bd674f0f9d44ff9466a1fb5e4e9bf/SolarSim/SolarSim.cpp#L1847-L1852
+これは、Geminiの提案でC++17の機能ですよね・・・
+
+次にRK4_TESTで4次ルンゲ＝クッタ法を用いた軌道計算の実装です
+https://github.com/kmiya-culti/SolarSim/blob/585e7ac5642bd674f0f9d44ff9466a1fb5e4e9bf/SolarSim/SolarSim.cpp#L1725-L1726
+これもGeminiからの提案で実装しましが、マルチスレッド化で見にくくなってしまいました。
+実際の計算は、４倍遅くなりますが同じタイムステップでも精度が数万倍に跳ね上がるそうです・・・
+
+これでMULTI_THREADとDIRECT2D_VIEWで小惑星の軌道計算と描画が可能になりましたが次にCUDAによりGPU支援です
+https://github.com/kmiya-culti/SolarSim/blob/585e7ac5642bd674f0f9d44ff9466a1fb5e4e9bf/SolarSim/kernel.cu#L15
+この実装前に厄介なデータ構造の変更を提案されました。
+「CUDA（GPU）の性能を引き出すためには「要素ごとの配列（SoA: Structure of Arrays）」への構造変更が非常に重要です」
+だそうで現在位置のデータ、現在の速度のベクトルデータなどを構造体で一括管理していたのをすべて配列に置き直しました
+https://github.com/kmiya-culti/SolarSim/blob/585e7ac5642bd674f0f9d44ff9466a1fb5e4e9bf/SolarSim/SolarSim.cpp#L88-L91
+この作業は、ソースコードの見た目が一昔前のようになり困惑しましたが、後の実装で必要性を実感しました
+https://github.com/kmiya-culti/SolarSim/blob/585e7ac5642bd674f0f9d44ff9466a1fb5e4e9bf/SolarSim/SolarSim.cpp#L1701-L1722
+軌道計算に必要なデータは、沢山ありますが・・・
+https://github.com/kmiya-culti/SolarSim/blob/585e7ac5642bd674f0f9d44ff9466a1fb5e4e9bf/SolarSim/SolarSim.cpp#L1930-L1933
+計算結果で表示に必要なのは、これだけです。毎回GPU<->CPUでのメモリ転送が必要なのがボトルネックになるそうです。
+さらにGPU側で必要なメモリ量なども事前に見積もって
+「現在のシミュレーターの規模（数万〜数十万天体）であれば、メモリ不足を心配する必要はほとんどありません」
+とのことで安心して実装しました。
