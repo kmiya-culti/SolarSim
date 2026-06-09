@@ -65,7 +65,7 @@ https://github.com/kmiya-culti/SolarSim/blob/585e7ac5642bd674f0f9d44ff9466a1fb5e
 これもGeminiからの提案で実装しましが、マルチスレッド化で見にくくなってしまいました。
 実際の計算は、４倍遅くなりますが同じタイムステップでも精度が数万倍に跳ね上がるそうです・・・
 
-これでMULTI_THREADとDIRECT2D_VIEWで小惑星の軌道計算と描画が可能になりましたが次にCUDAによりGPU支援です
+これでMULTI_THREADとDIRECT2D_VIEWで小惑星の軌道計算と描画が可能になりましたが次にCUDAでのGPU支援です
 https://github.com/kmiya-culti/SolarSim/blob/585e7ac5642bd674f0f9d44ff9466a1fb5e4e9bf/SolarSim/kernel.cu#L15
 この実装前に厄介なデータ構造の変更を提案されました。
 「CUDA（GPU）の性能を引き出すためには「要素ごとの配列（SoA: Structure of Arrays）」への構造変更が非常に重要です」
