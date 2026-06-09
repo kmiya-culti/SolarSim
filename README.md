@@ -162,7 +162,7 @@ https://github.com/kmiya-culti/SolarSim/blob/0b78a21535468cd93bf7a2dc50fb0e65f9a
 「解決策：【王道】カメラ相対座標系（Floating Origin / 宇宙の中心をカメラにする）」とのことで王道だそうです。
 https://github.com/kmiya-culti/SolarSim/blob/0b78a21535468cd93bf7a2dc50fb0e65f9a20d48/SolarSim/SolarSim.cpp#L2410
 実装は、簡単で画面に表示するときの中心位置の惑星座標を引き算するだけです。注意点は、引き算は、doubleの時でfloatにしてからの引き算は、
-意味が無いと言うことこで実際に実装したときにきっちり間違ってしまいGeminiに指摘されました。floatでは、0.0に近い値にして計算すれば
+意味が無いと言うことで実際に実装したときにきっちり間違ってしまいGeminiに指摘されました。floatでは、0.0に近い値にして計算すれば
 精度を上げることが出来る。それを実現するのに引き算を行う・・・天体シミュレータの王道だそうです。
 
 最後にDirect3D on 2Dで残っていた軌跡の表示
