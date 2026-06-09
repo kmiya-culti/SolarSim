@@ -1,6 +1,5 @@
 この天体シミュレータプログラムは、Google Geminiと共に色々と試行錯誤しながら作成しました。
 特にWindowsのDirectXの2D/3Dによる描画には、サンプルとしての有用性があると思います。
-GDI+やDirect2Dで描画する部分もコンパイルオプションとして残しています。
 
 <img width="328" height="264" alt="スクリーンショット 2026-06-06 100232" src="https://github.com/user-attachments/assets/b05985da-74d9-402a-aa44-7df945f70fbf" />
 <img width="328" height="264" alt="スクリーンショット 2026-06-06 100122" src="https://github.com/user-attachments/assets/0a95f5b3-338d-4f3a-aa00-c49ee020e5b7" />
