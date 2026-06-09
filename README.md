@@ -138,6 +138,9 @@ https://github.com/kmiya-culti/SolarSim/blob/0b78a21535468cd93bf7a2dc50fb0e65f9a
 
 結局、シャドウマップテクスチャをダイレクトに画面右下に表示するデバッグ画面を作成するように薦められて実装しました。
 https://github.com/kmiya-culti/SolarSim/blob/0b78a21535468cd93bf7a2dc50fb0e65f9a20d48/SolarSim/SolarSim.cpp#L2740-L2764
+
+<img width="328" height="264" alt="image" src="https://github.com/user-attachments/assets/15d397a2-e014-41b2-87e3-b33e00a0fe9e" />
+
 これが実に分かりやすい確認方法で太陽視点の惑星の重なりを簡単に確認でき間違ったサンプラーの設定などを修正できました。
 https://github.com/kmiya-culti/SolarSim/blob/0b78a21535468cd93bf7a2dc50fb0e65f9a20d48/SolarSim/planet.hlsl#L168-L179
 SampleCmpLevelZeroの扱いが少しややこしかったです
@@ -149,7 +152,7 @@ https://github.com/kmiya-culti/SolarSim/blob/0b78a21535468cd93bf7a2dc50fb0e65f9a
 https://github.com/kmiya-culti/SolarSim/blob/0b78a21535468cd93bf7a2dc50fb0e65f9a20d48/SolarSim/planet.hlsl#L323-L348
 
 なんとなくテクスチャ回りの実装が解れば、惑星のテクスチャ画像をネットでさがして2Dのテクスチャの貼り付けるだけなのでそれなりに
-実装しましが画像で惑星が表示されると自転軸の傾斜や自転速度など今まで無視していたデータ必要になって結構、大変でした。
+実装しましが画像で惑星が表示されると自転軸の傾斜や自転速度など今まで無視していたデータが必要になって結構、大変でした。
 https://github.com/kmiya-culti/SolarSim/blob/0b78a21535468cd93bf7a2dc50fb0e65f9a20d48/SolarSim/PlanetTexture.cpp#L44-L57
 https://github.com/kmiya-culti/SolarSim/blob/0b78a21535468cd93bf7a2dc50fb0e65f9a20d48/SolarSim/SolarSim.cpp#L1559-L1588
 
@@ -192,5 +195,5 @@ Formatの指定をテクスチャがDXGI_FORMAT_R8G8B8A8_UNORMでビットマッ
 「はいはい・・それは、これですね！」程度で指摘してもらえます。また、論理的なミスなどは、問題の原因を見つけるとその本質をとても詳しく
 分析して報告してもらえたので自身の理解を高める事が出来ました。この点は、非常に素晴らしい経験でAIによる自身の学習が効果的ですね。
 
-昨今のAIによるプログラム支援の有効性は、一発で欲しい機能のプログラムを作成してもらうのでは、無く、欲しい機能の作成の理解を助けて
+昨今のAIによるプログラム支援の有効性は、一発で欲しい機能のプログラムを作成してもらうのでは、なく、欲しい機能の作成の理解を助けて
 もらえると考えると非常に有効だと思いました。
