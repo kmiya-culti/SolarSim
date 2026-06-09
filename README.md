@@ -56,7 +56,9 @@ https://github.com/kmiya-culti/SolarSim/blob/585e7ac5642bd674f0f9d44ff9466a1fb5e
 
 次にMULTI_THREADで軌道計算などをメインCPUのマルチスレッド化します
 https://github.com/kmiya-culti/SolarSim/blob/585e7ac5642bd674f0f9d44ff9466a1fb5e4e9bf/SolarSim/SolarSim.cpp#L1847-L1852
-これは、Geminiの提案でC++17の機能ですよね・・・
+これは、Geminiの提案でC++17の機能ですよね・・・また、Geminiからの提案で「構成プロパティ・C/C++・コード作成」の
+「拡張命令セットを有効にする」を Advanced Vector Extensions 2 (X86/X64) (/arch:AVX2)「浮動小数点モデル」をFast (/fp:fast)
+が有効とのことで試したら約1.3倍程速くなりました。現在のプロジェクトでそのように設定していますが自身のCPUに合わせて変更してください。
 
 次にRK4_TESTで4次ルンゲ＝クッタ法を用いた軌道計算の実装です
 https://github.com/kmiya-culti/SolarSim/blob/585e7ac5642bd674f0f9d44ff9466a1fb5e4e9bf/SolarSim/SolarSim.cpp#L1725-L1726
