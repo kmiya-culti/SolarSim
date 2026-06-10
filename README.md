@@ -5,7 +5,7 @@
 <img width="328" height="264" alt="スクリーンショット 2026-06-06 100122" src="https://github.com/user-attachments/assets/0a95f5b3-338d-4f3a-aa00-c49ee020e5b7" />
 
 <BR>
-開発環境: Visual Studio 2026 / C++17<BR>
+開発環境: Windows 11 / Visual Studio 2026 / C++17<BR>
 ビルド手順: Visual Studioでソリューションファイルを開き、ビルドしてください<BR>
 操作方法：詳しくは、プラグラムソース内のキー操作、マウス操作を参照してください<BR>
 
