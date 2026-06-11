@@ -42,6 +42,7 @@ Step横の除算値とFpsでベンチマーク的な評価が出来ます。
 ご自身の環境にあった精度と表示速度を探す必要があります。
 ちなみに除算値に余裕があるとキー操作のTでステップタイムを上げても
 小惑星や衛星などの軌道計算の破城で飛び出しません。
+高性能なCPU/GPUの場合は、人より速く表示することが出来ます。
 
 #### 開発環境やプログラムのビルド
 
@@ -101,6 +102,7 @@ https://github.com/kmiya-culti/SolarSim/blob/50249488a7368e3c710367cd138fa393dc2
 baseTimeStepで計算精度と表示速度を決めますが、実際に動作させてみて自身のCPU/GPUにより除算値の様子を見て決めます。
 除算値に余裕があれば、baseTimeStepを上げて更新間隔を速くすることが出来ます。
 FramePerSecは、10倍の数値で設定していますのでご注意ください。
+また、現在の仕様では、CPU/GPUを100%近くまで動作するようにしていますのでご注意ください。
 
 次にMULTI_THREADで軌道計算などをメインCPUのマルチスレッド化します
 https://github.com/kmiya-culti/SolarSim/blob/585e7ac5642bd674f0f9d44ff9466a1fb5e4e9bf/SolarSim/SolarSim.cpp#L1847-L1852
