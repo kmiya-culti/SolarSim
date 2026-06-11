@@ -78,8 +78,10 @@ The texture image data for satellites and other objects was obtained from the so
 Image or texture
 https://science.nasa.gov/science-org-term/image-or-texture/
 
-謝辞 : 本プロジェクトの3Dグラフィックスパイプラインの構築、および複雑な座標系のデバッグにおいて、AIアシスタント（Google Gemini）を共同開発パートナーとして活用しました。<BR>
-Acknowledgments : Special thanks to Google Gemini, which acted as a co-pilot in debugging complex 3D coordinate spaces and optimizing the Direct3D 11 rendering pipeline.*
+#### 謝辞 / Acknowledgments
+
+本プロジェクトの3Dグラフィックスパイプラインの構築、および複雑な座標系のデバッグにおいて、AIアシスタント（Google Gemini）を共同開発パートナーとして活用しました。<BR>
+Special thanks to Google Gemini, which acted as a co-pilot in debugging complex 3D coordinate spaces and optimizing the Direct3D 11 rendering pipeline.*
 
 #### プログラムソースコードの詳細な説明
 
@@ -91,6 +93,12 @@ https://github.com/kmiya-culti/SolarSim/blob/585e7ac5642bd674f0f9d44ff9466a1fb5e
 実際に違いが現れるのは、ASTEROID_BELTやTROJAN_ASTEROIDS、SATURN_RINGSなどで小惑星を表示した場合で
 数千から数十万の小惑星の描画には、DirectXの力を借りないと従来のGDIでは、非常に苦しいです。
 https://github.com/kmiya-culti/SolarSim/blob/585e7ac5642bd674f0f9d44ff9466a1fb5e4e9bf/SolarSim/SolarSim.cpp#L2959-L2961
+
+コンパイルオプションで決定したシミュレーション内容により計算精度や表示速度を決めている部分です。
+https://github.com/kmiya-culti/SolarSim/blob/50249488a7368e3c710367cd138fa393dc29b7bb/SolarSim/SolarSim.cpp#L4-L32
+baseTimeStepで計算精度と表示速度を決めますが、実際に動作させてみて自身のCPU/GPUにより除算値の様子を見て決めます。
+除算値に余裕があれば、baseTimeStepを上げて更新間隔を速くすることが出来ます。
+FramePerSecは、10倍の数値で設定していますのでご注意ください。
 
 次にMULTI_THREADで軌道計算などをメインCPUのマルチスレッド化します
 https://github.com/kmiya-culti/SolarSim/blob/585e7ac5642bd674f0f9d44ff9466a1fb5e4e9bf/SolarSim/SolarSim.cpp#L1847-L1852
